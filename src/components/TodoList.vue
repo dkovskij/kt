@@ -10,19 +10,21 @@
         <img class="dots-img" src="../assets/dots.png" alt="dots">
       </div>
       </div>
-      <list></list>
+      <router-view></router-view>
+      <!-- <list></list> -->
       <save-button :todo-text="todoText" @clear-text='clearText'></save-button>
     </div>
   </div>
 </template>
 
 <script>
+/*eslint-disable */
 import List from '@/components/List/List'
 import AddTodo from '@/components/AddTodo/AddTodo'
 import SaveButton from '@/components/SaveButton/SaveButton'
 export default {
   components: {
-    List, AddTodo, SaveButton
+    AddTodo, SaveButton
   },
   data() {
     return {
