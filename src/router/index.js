@@ -4,11 +4,15 @@ import List from '@/components/List/List'
 
 Vue.use(Router)
 
-export const routes = [{
-    path: '/'
+export const routes = [
+  {
+    path: '/',
+    component: List,
+    redirect: {name: 'pages'}
   },
   {
-    path: '/todos',
+    name: 'pages',
+    path: '/todos/:page',
     component: List
   }
 ]
