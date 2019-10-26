@@ -23,6 +23,10 @@
 /*eslint-disable */
 
 export default {
+  data() {
+    return {
+    }
+  },
   computed: {
     todoList() {
       return this.$store.state.todoList;
@@ -30,7 +34,7 @@ export default {
   },
   methods: {
     changeStatus(item) {
-    this.$store.dispatch('SET_COMPLETED', item.id)
+    this.$store.dispatch('SET_COMPLETED', item)
   }
   },
 };

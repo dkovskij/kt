@@ -29,6 +29,9 @@ export default {
       todoText: ''
     }
   },
+  created() {
+    this.$store.dispatch('GET_TODOS')
+  },
   methods: {
     transferText(text) {
       this.todoText = text
