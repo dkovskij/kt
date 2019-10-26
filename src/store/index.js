@@ -29,6 +29,13 @@ export const store = new Vuex.Store({
           Vue.set(state.todoList[i], 'completed', true)
         }
       }
+    },
+    DELETE_TODO: (state, id) => {
+      for (let i = 0; i < state.todoList.length; i++) {
+        if (state.todoList[i].id === id) {
+          state.todoList.splice(i, 1)
+        }
+      }
     }
   },
   actions: {
@@ -49,7 +56,7 @@ export const store = new Vuex.Store({
     ADD_TODO: ({commit, state}, text ) => {
       return new Promise ((resolve) => {
         let count = state.todoList.length + 1
-        let date = new Date()
+        let date = Date.now()
         let t = new Todo(count, false, date, text)
         let tt = Object.assign({}, t)
         db.collection('todos').doc('' + count).set(tt)
@@ -63,8 +70,23 @@ export const store = new Vuex.Store({
     },
     SET_COMPLETED: ({commit}, todo) => {
       commit('SET_COMPLETED', todo.id)
-      db.collection('todos').doc('' + todo.id).set(todo)
+      let tt = Object.assign({}, todo)
+      setTimeout(function () {
+        db.collection('todos').doc('' + tt.id).set(tt)
+      }, 200)
 
+    },
+    DELETE_TODO: ({commit}, todo) => {
+      commit('DELETE_TODO', todo.id)
+      db.collection('todos').doc('' + todo.id).delete()
+    }
+  },
+  getters: {
+    sortedList: state => {
+      function sortList(arr) {
+          return arr.sort((a, b) => a.created_at.seconds < b.created_at.seconds ? 1 : -1);
+      }
+      return sortList(state.todoList)
     }
   }
 })
