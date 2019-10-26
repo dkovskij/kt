@@ -1,7 +1,7 @@
 export default class Todo {
-  constructor(id, active, created_at, text ) {
+  constructor(id, completed, created_at, text ) {
     this.id = id
-    this.active = active
+    this.completed = completed
     this.created_at = created_at
     this.text = text
   }

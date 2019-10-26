@@ -10,4 +10,25 @@
   border-radius: 10px;
   padding: 10px;
   background-color: #fff;
+  box-shadow: 0 3px 2px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: 30px 1fr 50px;
+}
+.edit-block {
+  display: flex;
+}
+.close {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.close-img {
+  width: 20px;
+  height: 20px;
+}
+.edit {
+  cursor: pointer;
+}
+.edit-img {
+  width: 20px;
+  height: 20px;
 }

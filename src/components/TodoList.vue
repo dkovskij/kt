@@ -1,7 +1,7 @@
 <template>
   <div class="list-wrap">
     <div class="list-container">
-      <add-todo @on-transfer="transferText"></add-todo>
+      <add-todo @on-transfer="transferText" :todo-text="todoText"></add-todo>
       <div class="list-title-wrap">
         <div class="list-title">
         Задачи
@@ -11,7 +11,7 @@
       </div>
       </div>
       <list></list>
-      <save-button :todo-text="todoText"></save-button>
+      <save-button :todo-text="todoText" @clear-text='clearText'></save-button>
     </div>
   </div>
 </template>
@@ -32,6 +32,9 @@ export default {
   methods: {
     transferText(text) {
       this.todoText = text
+    },
+    clearText() {
+      this.todoText = ''
     }
   },
 }

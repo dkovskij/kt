@@ -11,14 +11,8 @@ export default {
   },
   methods: {
     addTodo() {
-      if (!this.todoText) {
-        return
-      }
       this.$store.dispatch('ADD_TODO', this.todoText)
     },
-    clearText() {
-      this.$emit('clear-text')
-    }
   },
 }
 </script>
