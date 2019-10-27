@@ -39,7 +39,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    GET_TODOS: ({commit}) => {
+    GET_TODOS: ({commit}, offset) => {
       return new Promise((resolve, reject) => {
         let todos = []
         db.collection('todos')
