@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import List from '@/components/List/List'
+import TodoList from '@/components/TodoList'
 import EditTodo from '@/components/EditTodo/EditTodo'
 
 Vue.use(Router)
@@ -8,17 +8,10 @@ Vue.use(Router)
 export const routes = [
   {
     path: '/',
-    component: List,
-    redirect: '/todos',
-    props: true
+    component: TodoList,
   },
   {
-    path: '/todos',
-    component: List,
-    props: true
-  },
-  {
-    path: '/edit-todo',
+    path: '/edit-todo/:id',
     component: EditTodo,
     props: true
   }

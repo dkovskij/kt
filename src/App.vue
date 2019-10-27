@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <todo-list></todo-list>
+    <h1 v-if="loading">Загрузка...</h1>
+    <router-view v-else></router-view>
   </div>
 </template>
 
 <script>
-import TodoList from '@/components/TodoList'
 
 export default {
-  name: 'app',
-  components: {
-    TodoList
-  }
+  computed: {
+    loading() {
+      return this.$store.state.loading
+    }
+  },
+  created() {
+    this.$store.commit('SET_LOADING', true)
+    this.$store.dispatch('GET_TODOS').then(() => {
+      this.$store.commit('SET_LOADING', false)
+    })
+  },
 }
 </script>
 

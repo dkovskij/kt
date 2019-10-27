@@ -5,13 +5,18 @@
 </template>
 
 <script>
+/* eslint-disable*/
 export default {
-  props: {
-    todoText: String
-  },
   methods: {
     addTodo() {
-      this.$store.dispatch('ADD_TODO', this.todoText)
+      if (this.$route.path.indexOf('edit-todo') !== -1) {
+        this.$store.dispatch('EDIT_TODO', this.$route.params.id)
+        this.$store.commit('CLEAR_INPUT')
+        this.$router.push('/')
+        return
+      }
+      this.$store.dispatch('ADD_TODO')
+      this.$store.commit('CLEAR_INPUT')
     },
   },
 }

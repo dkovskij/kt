@@ -1,25 +1,28 @@
 <template>
   <div class="add-todo">
     <div class="input-area">
-      <textarea v-model="text" @input="transferText" class="text-input" placeholder="Введите задачу..."></textarea>
+      <textarea v-model="inputText" class="text-input" placeholder="Введите задачу..."></textarea>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    todoText: String
-  },
   data() {
     return {
-      text: this.todoText
+    }
+  },
+  computed: {
+     inputText: {
+      get() {
+        return this.$store.state.inputText
+      },
+      set(val) {
+        this.$store.commit('SET_INPUT_TEXT', val)
+      }
     }
   },
   methods: {
-    transferText() {
-      this.$emit('on-transfer', this.text)
-    }
   },
 }
 </script>

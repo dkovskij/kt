@@ -61,7 +61,6 @@ export default {
     }
   },
   created() {
-    // console.log(this.$route)
   },
   methods: {
     changeStatus(item) {
@@ -71,6 +70,7 @@ export default {
       this.$store.dispatch("DELETE_TODO", item);
     },
     editTodo(item) {
+      this.$store.commit('SET_INPUT_TEXT', item.text)
       this.$router.push('/edit-todo/' + item.id)
     },
     changePage(page) {

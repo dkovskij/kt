@@ -4,14 +4,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Todo from '@/class/todo'
 import {db} from '@/main'
-import {firestore} from 'firebase/firestore'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
     todoList: [],
-    inputText: ''
+    inputText: '',
+    loading: false
   },
   mutations: {
     SET_TODOS: (state, todos) => {
@@ -36,37 +36,44 @@ export const store = new Vuex.Store({
           state.todoList.splice(i, 1)
         }
       }
+    },
+    CLEAR_INPUT: (state) => {
+      Vue.set(state, 'inputText', '')
+    },
+    SET_LOADING: (state, loading) => {
+      state.loading = loading
     }
   },
   actions: {
-    GET_TODOS: ({commit}, offset) => {
+    GET_TODOS: ({commit}) => {
       return new Promise((resolve, reject) => {
-        let todos = []
         db.collection('todos')
           .get()
           .then(r => {
             const todos = r.docs.map(doc => doc.data())
             commit('SET_TODOS', todos)
-            resolve()
+            resolve('ok')
         }).catch(err => {
           reject(err)
         })
       })
     },
-    ADD_TODO: ({commit, state}, text ) => {
-      return new Promise ((resolve) => {
+    ADD_TODO: ({commit, state} ) => {
         let count = state.todoList.length + 1
         let date = Date.now()
-        let t = new Todo(count, false, date, text)
+        let t = new Todo(count, false, date, state.inputText)
         let tt = Object.assign({}, t)
         db.collection('todos').doc('' + count).set(tt)
-
         commit('SET_TODO', t)
-        resolve()
-      })
     },
-    SET_INPUT_TEXT: ({commit}, text) => {
-      commit('SET_INPUT_TEXT', text)
+    EDIT_TODO: ({commit, state}, id) => {
+      for (let i = 0; i < state.todoList.length; i++) {
+        if (state.todoList[i].id == id) {
+          state.todoList[i].text = state.inputText
+          let tt = Object.assign({}, state.todoList[i])
+          db.collection('todos').doc('' + tt.id).set(tt)
+        }
+      }
     },
     SET_COMPLETED: ({commit}, todo) => {
       commit('SET_COMPLETED', todo.id)

@@ -10,9 +10,8 @@
         <img class="dots-img" src="../assets/dots.png" alt="dots">
       </div>
       </div>
-      <router-view></router-view>
-      <!-- <list></list> -->
-      <save-button :todo-text="todoText" @clear-text='clearText'></save-button>
+      <list></list>
+      <save-button></save-button>
     </div>
   </div>
 </template>
@@ -24,15 +23,11 @@ import AddTodo from '@/components/AddTodo/AddTodo'
 import SaveButton from '@/components/SaveButton/SaveButton'
 export default {
   components: {
-    AddTodo, SaveButton
-  },
+    AddTodo, SaveButton, List  },
   data() {
     return {
       todoText: ''
     }
-  },
-  created() {
-    this.$store.dispatch('GET_TODOS')
   },
   methods: {
     transferText(text) {
