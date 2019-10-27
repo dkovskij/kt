@@ -17,7 +17,6 @@
 </template>
 
 <script>
-/*eslint-disable */
 import List from '@/components/List/List'
 import AddTodo from '@/components/AddTodo/AddTodo'
 import SaveButton from '@/components/SaveButton/SaveButton'

@@ -30,7 +30,6 @@
 </template>
 
 <script>
-/*eslint-disable */
 import { db } from "@/main";
 
 export default {
@@ -39,8 +38,6 @@ export default {
       resultCount: 0,
       currentPage: 1,
       itemsPerPage: 10,
-      offset: 0,
-      limit: 10
     };
   },
   computed: {
