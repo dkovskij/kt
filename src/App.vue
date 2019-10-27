@@ -1,22 +1,27 @@
 <template>
   <div id="app">
+    <h1 v-if="loading">Загрузка...</h1>
+    <router-view v-else></router-view>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'app'
+  computed: {
+    loading() {
+      return this.$store.state.loading
+    }
+  },
+  created() {
+    this.$store.commit('SET_LOADING', true)
+    this.$store.dispatch('GET_TODOS').then(() => {
+      this.$store.commit('SET_LOADING', false)
+    })
+  },
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+@import '@/styles/main.scss';
 </style>

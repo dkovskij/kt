@@ -1,0 +1,55 @@
+.list-wrap {
+  margin-top: 10px;
+}
+.list-content {
+  list-style: decimal;
+}
+.list-item {
+  margin-top: 10px;
+  height: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 3px 2px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: 30px 1fr 50px;
+}
+.edit-block {
+  display: flex;
+}
+.close {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.close-img {
+  width: 20px;
+  height: 20px;
+}
+.edit {
+  cursor: pointer;
+}
+.edit-img {
+  width: 20px;
+  height: 20px;
+}
+.completed-class {
+  text-decoration: line-through;
+}
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  height: 30px;
+  .prev {
+    margin-right: 20px;
+  }
+  .prev, .next {
+    line-height: 30px;
+    background-color: #7ca65c;
+    height: 100%;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,25 @@
+.list-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #e0e3e6;
+  border-radius: 10px;
+}
+.list-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.list-title-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.dots {
+  height: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.dots-img {
+  width: 20px;
+}
